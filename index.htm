@@ -27,7 +27,6 @@
       <li><a class="nav-link" href="#Util">Util</a></li>
     </ul>
   </nav>
-  <p>Bring Bootstrap to life with our optional JavaScript plugins built on jQuery. Learn about each plugin, our data and programmatic API options, and more.</p>
   <main id="main-doc">
     <section class="main-section" id="Individual_or_Compiled">
       <header>Individual or Compiled</header>
@@ -51,13 +50,10 @@
       <article>
         <p>Nearly all Bootstrap plugins can be enabled and configured through HTML alone with data attributes (our preferred way of using JavaScript functionality). Be sure to <b>only use one set of data attributes on a single element</b> (e.g., you cannot trigger a tooltip and modal from the same button.)</p>
         <p>However, in some situations it may be desirable to disable this functionality. To disable the data attribute API, unbind all events on the document namespaced with <code>data-api</code> like so:</p>
-        <code>
-          $(document).off('.data-api')
-        </code>
+        <code class="codes">$(document).off('.data-api')</code>
         <p>Alternatively, to target a specific plugin, just include the plugin’s name as a namespace along with the data-api namespace like this:</p>
-        <code>
-          $(document).off('.alert.data-api')
-        </code>
+        <code class="codes">$(document).off('.alert.data-api')</code>
+        <br />
         <div class="jumbotron">
           <strong>Escaping selectors</strong>
           <p>If you use special selectors, for example: <code>collapse:Example</code>, be sure to escape them, because they’ll be passed through jQuery.</p>
@@ -73,74 +69,72 @@
           <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">preventDefault()</a> 
           functionality. This provides the ability to stop the execution of an action before it starts. Returning false from an event handler will also automatically call <code>preventDefault()</code>.
         </p>
-        <code>
-          $('#myModal').on('show.bs.modal', function (e) {
-            if (!data) return e.preventDefault() // stops modal from being shown
-          })
-        </code>
+        <code class="codes">$('#myModal').on('show.bs.modal', function (e) {
+  if (!data) return e.preventDefault() // stops modal from being shown
+})
+</code>
       </article>
     </section>
+    <br />
     <section class="main-section" id="Programmatic_API">
       <header>Programmatic API</header>
       <article>
         <p>We also believe you should be able to use all Bootstrap plugins purely through the JavaScript API. All public APIs are single, chainable methods, and return the collection acted upon.</p>
-        <code>
-          $('.btn.danger').button('toggle').addClass('fat')
-        </code>
+        <code class="codes">$('.btn.danger').button('toggle').addClass('fat')</code>
         <p>All methods should accept an optional options object, a string which targets a particular method, or nothing (which initiates a plugin with default behavior):</p>
-        <code>
-          $('#myModal').modal()                      // initialized with defaults
-          $('#myModal').modal({ keyboard: false })   // initialized with no keyboard
-          $('#myModal').modal('show')                // initializes and invokes show immediately
-        </code>
+        <code class="codes">$('#myModal').modal()                      // initialized with defaults
+$('#myModal').modal({ keyboard: false })   // initialized with no keyboard
+$('#myModal').modal('show')                // initializes and invokes show immediately
+</code>
         <p>Each plugin also exposes its raw constructor on a <code>Constructor</code> property: <code>$.fn.popover.Constructor</code>. If you’d like to get a particular plugin instance, retrieve it directly from an element: <code>$('[rel="popover"]').data('popover')</code>.</p>
         <section class="sub-section" id="Asynchronous_functions_and_transitions">
-          <header>Asynchronous functions and transitions</header>
+          <header class="sub-header">Asynchronous functions and transitions</header>
           <article>
             <p>All programmatic API methods are asynchronous and returns to the caller once the transition is started but <b>before it ends</b>.</p>
             <p>In order to execute an action once the transition is complete, you can listen to the corresponding event.</p>
-            <code>
-              $('#myCollapse').on('shown.bs.collapse', function (e) {
-                // Action to execute once the collapsible area is expanded
-              })
-            </code>
+            <code class="codes">$('#myCollapse').on('shown.bs.collapse', function (e) {
+  // Action to execute once the collapsible area is expanded
+})
+</code>
             <p>In addition a method call on a <b>transitioning component will be ignored</b>.</p>
-            <code>
-              $('#myCarousel').on('slid.bs.carousel', function (e) {
-                $('#myCarousel').carousel('2') // Will slide to the slide 2 as soon as the transition to slide 1 is finished
-              })
+            <code class="codes">$('#myCarousel').on('slid.bs.carousel', function (e) {
+  $('#myCarousel').carousel('2') // Will slide to the slide 2 as soon as the transition to slide 1 is finished
+})
                 
-              $('#myCarousel').carousel('1') // Will start sliding to the slide 1 and returns to the caller
-              $('#myCarousel').carousel('2') // !! Will be ignored, as the transition to the slide 1 is not finished !!
-            </code>
+$('#myCarousel').carousel('1') // Will start sliding to the slide 1 and returns to the caller
+$('#myCarousel').carousel('2') // !! Will be ignored, as the transition to the slide 1 is not finished !!
+</code>
           </article>
         </section>
+        <br />
         <section class="sub-section" id="Default_settings">
-          <header>Default settings</header>
+          <header class="sub-header">Default settings</header>
           <article>
             <p>You can change the default settings for a plugin by modifying the plugin’s <code>Constructor.Default</code> object:</p>
-            <code>$.fn.modal.Constructor.Default.keyboard = false // changes default for the modal plugin's `keyboard` option to false</code>
+            <code class="codes">$.fn.modal.Constructor.Default.keyboard = false // changes default for the modal plugin's `keyboard` option to false</code>
           </article>
         </section>
       </article>
     </section>
+    <br />
     <section class="main-section" id="No_conflict">
       <header>No conflict</header>
       <article>
         <p>Sometimes it is necessary to use Bootstrap plugins with other UI frameworks. In these circumstances, namespace collisions can occasionally occur. If this happens, you may call <code>.noConflict</code> on the plugin you wish to revert the value of.</p>
-        <code>
-          var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
-          $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
-        </code>
+        <code class="codes">var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+$.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
+</code>
       </article>
     </section>
+    <br />
     <section class="main-section" id="Version_numbers">
       <header>Version numbers</header>
       <article>
         <p>The version of each of Bootstrap’s jQuery plugins can be accessed via the <code>VERSION</code> property of the plugin’s constructor. For example, for the tooltip plugin:</p>
-        <code>$.fn.tooltip.Constructor.VERSION // => "4.1.3"</code>
+        <code class="codes">$.fn.tooltip.Constructor.VERSION // => "4.1.3"</code>
       </article>
     </section>
+    <br />
     <section class="main-section" id="No_special_fallbacks_when_JavaScript_is_disabled">
       <header>No special fallbacks when JavaScript is disabled</header>
       <article>
@@ -155,6 +149,7 @@
           </p>
         </div>
       </article>
+      <br />
     </section>
     <section class="main-section" id="Util">
       <header>Util</header>
