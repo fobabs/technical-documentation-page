@@ -50,9 +50,9 @@
       <article>
         <p>Nearly all Bootstrap plugins can be enabled and configured through HTML alone with data attributes (our preferred way of using JavaScript functionality). Be sure to <b>only use one set of data attributes on a single element</b> (e.g., you cannot trigger a tooltip and modal from the same button.)</p>
         <p>However, in some situations it may be desirable to disable this functionality. To disable the data attribute API, unbind all events on the document namespaced with <code>data-api</code> like so:</p>
-        <code class="codes">$(document).off('.data-api')</code>
+        <pre><code class="codes">$(document).off('.data-api')</code></pre>
         <p>Alternatively, to target a specific plugin, just include the plugin’s name as a namespace along with the data-api namespace like this:</p>
-        <code class="codes">$(document).off('.alert.data-api')</code>
+        <pre><code class="codes">$(document).off('.alert.data-api')</code></pre>
         <br />
         <div class="jumbotron">
           <strong>Escaping selectors</strong>
@@ -69,10 +69,10 @@
           <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">preventDefault()</a> 
           functionality. This provides the ability to stop the execution of an action before it starts. Returning false from an event handler will also automatically call <code>preventDefault()</code>.
         </p>
-        <code class="codes">$('#myModal').on('show.bs.modal', function (e) {
+        <pre><code class="codes">$('#myModal').on('show.bs.modal', function (e) {
   if (!data) return e.preventDefault() // stops modal from being shown
 })
-</code>
+</code></pre>
       </article>
     </section>
     <br />
@@ -80,30 +80,30 @@
       <header>Programmatic API</header>
       <article>
         <p>We also believe you should be able to use all Bootstrap plugins purely through the JavaScript API. All public APIs are single, chainable methods, and return the collection acted upon.</p>
-        <code class="codes">$('.btn.danger').button('toggle').addClass('fat')</code>
+        <pre><code class="codes">$('.btn.danger').button('toggle').addClass('fat')</code></pre>
         <p>All methods should accept an optional options object, a string which targets a particular method, or nothing (which initiates a plugin with default behavior):</p>
-        <code class="codes">$('#myModal').modal()                      // initialized with defaults
+        <pre><code class="codes">$('#myModal').modal()                      // initialized with defaults
 $('#myModal').modal({ keyboard: false })   // initialized with no keyboard
 $('#myModal').modal('show')                // initializes and invokes show immediately
-</code>
+</code></pre>
         <p>Each plugin also exposes its raw constructor on a <code>Constructor</code> property: <code>$.fn.popover.Constructor</code>. If you’d like to get a particular plugin instance, retrieve it directly from an element: <code>$('[rel="popover"]').data('popover')</code>.</p>
         <section class="sub-section" id="Asynchronous_functions_and_transitions">
           <header class="sub-header">Asynchronous functions and transitions</header>
           <article>
             <p>All programmatic API methods are asynchronous and returns to the caller once the transition is started but <b>before it ends</b>.</p>
             <p>In order to execute an action once the transition is complete, you can listen to the corresponding event.</p>
-            <code class="codes">$('#myCollapse').on('shown.bs.collapse', function (e) {
+            <pre><code class="codes">$('#myCollapse').on('shown.bs.collapse', function (e) {
   // Action to execute once the collapsible area is expanded
 })
-</code>
+</code></pre>
             <p>In addition a method call on a <b>transitioning component will be ignored</b>.</p>
-            <code class="codes">$('#myCarousel').on('slid.bs.carousel', function (e) {
+            <pre><code class="codes">$('#myCarousel').on('slid.bs.carousel', function (e) {
   $('#myCarousel').carousel('2') // Will slide to the slide 2 as soon as the transition to slide 1 is finished
 })
                 
 $('#myCarousel').carousel('1') // Will start sliding to the slide 1 and returns to the caller
 $('#myCarousel').carousel('2') // !! Will be ignored, as the transition to the slide 1 is not finished !!
-</code>
+</code></pre>
           </article>
         </section>
         <br />
@@ -111,7 +111,7 @@ $('#myCarousel').carousel('2') // !! Will be ignored, as the transition to the s
           <header class="sub-header">Default settings</header>
           <article>
             <p>You can change the default settings for a plugin by modifying the plugin’s <code>Constructor.Default</code> object:</p>
-            <code class="codes">$.fn.modal.Constructor.Default.keyboard = false // changes default for the modal plugin's `keyboard` option to false</code>
+            <pre><code class="codes">$.fn.modal.Constructor.Default.keyboard = false // changes default for the modal plugin's `keyboard` option to false</code></pre>
           </article>
         </section>
       </article>
@@ -121,9 +121,9 @@ $('#myCarousel').carousel('2') // !! Will be ignored, as the transition to the s
       <header>No conflict</header>
       <article>
         <p>Sometimes it is necessary to use Bootstrap plugins with other UI frameworks. In these circumstances, namespace collisions can occasionally occur. If this happens, you may call <code>.noConflict</code> on the plugin you wish to revert the value of.</p>
-        <code class="codes">var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+        <pre><code class="codes">var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
 $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
-</code>
+</code></pre>
       </article>
     </section>
     <br />
@@ -131,7 +131,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
       <header>Version numbers</header>
       <article>
         <p>The version of each of Bootstrap’s jQuery plugins can be accessed via the <code>VERSION</code> property of the plugin’s constructor. For example, for the tooltip plugin:</p>
-        <code class="codes">$.fn.tooltip.Constructor.VERSION // => "4.1.3"</code>
+        <pre><code class="codes">$.fn.tooltip.Constructor.VERSION // => "4.1.3"</code></pre>
       </article>
     </section>
     <br />
@@ -158,13 +158,22 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
         <p><code>util.js</code> includes utility functions and a basic helper for <code>transitionEnd</code> events as well as a CSS transition emulator. It’s used by the other plugins to check for CSS transition support and to catch hanging transitions.</p>
       </article>
     </section>
+    <section id="lower-section">
+      <ul>
+        <li>&copy; 2011–2018 Twitter, Inc.</li>
+        <li>&copy; 2011–2018 The Bootstrap Authors</li>
+        <li>Code licensed under the MIT License.</li>
+        <li>Documentation licensed under the Creative Commons Attribution License v3.0.</li>
+        <li><a href="https://getbootstrap.com/docs/4.1/getting-started/javascript/">https://getbootstrap.com/docs/4.1/getting-started/javascript/</a></li>
+      </ul>
+    </section>
   </main>
   <footer>
-    <p>&copy; 2011–2018 Twitter, Inc.</p>
-    <p>&copy; 2011–2018 The Bootstrap Authors</p>
-    <p>Code licensed under the MIT License.</p>
-    <p>Documentation licensed under the Creative Commons Attribution License v3.0.</p>
-    <p><a href="https://getbootstrap.com/docs/4.1/getting-started/javascript/"></a></p>
+    <ul>
+      <li>Bootstrap</li>
+      <li>Getting Started</li>
+      <li>JavaScript</li>
+    </ul>
   </footer>
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </body>
