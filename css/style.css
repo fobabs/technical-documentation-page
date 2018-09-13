@@ -5,9 +5,14 @@ html, body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
 }
 /* Navigation */
+header {
+  font-size: 30px;
+  text-align: center;
+  margin: 5px;
+}
 #navbar {
   position: fixed;
-  min-width: 270px;
+  min-width: 250px;
   top: 0;
   left: 0;
   height: 100%;
@@ -15,11 +20,6 @@ html, body {
   border-right: solid;
   border-color: rgba(0,22,22,0.4);
   z-index: 1;
-}
-header {
-  font-size: 30px;
-  text-align: center;
-  margin: 5px;
 }
 #navbar header {
   color: rgb(20, 20, 20);
@@ -45,9 +45,11 @@ header {
   text-decoration: none;
   cursor: pointer;
 }
+/* Main Page */
 #main-doc {
   margin-left: 310px;
   padding: 20px;
+  position: relative;
 }
 #main-doc header {
   font-size: 17px;
@@ -80,8 +82,7 @@ code {
 .codes {
   display: block;
   position: relative;
-  word-break: normal;
-  word-wrap: normal;
+  word-wrap: break-word;
   background-color: #f8f8f8;
   border: 0.5px solid #e9e3e3;
   border-radius: 5px;
@@ -147,4 +148,42 @@ footer a {
 footer a:hover {
   color: rgb(85, 121, 199);
   text-decoration: underline;  
+}
+/* Media queries for mobile phones */
+
+@media only screen and (max-width: 850px) {
+  #navbar {
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    max-height: 220px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-bottom: 2px solid;
+    z-index: 1;
+  }
+  #navbar ul {
+    height: 60%;
+  }
+  #main-doc {
+    position: relative;
+    margin-top: 210px;
+    margin-left: 0;
+  }
+  footer {
+    display: none;
+  }
+}
+@media only screen and (max-width: 450px) {
+  #main-doc {
+    margin-left: -10px;
+  }
+  .codes {
+    width: 100%;
+    min-width: 233px;
+    margin-left: -20px;
+    padding: 15px;
+  }
 }
